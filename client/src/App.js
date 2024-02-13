@@ -5,7 +5,8 @@ import IncomeList from './components/IncomeList';
 
 
 function App() {
-	const [income, setIncome] = useState([]);
+	const initialIncome = JSON.parse(localStorage.getItem("income")) || [];
+	const [income, setIncome] = useState(initialIncome);
 	const [totalIncome, setTotalIncome] = useState(0);
 
 	useEffect(() => {
@@ -15,6 +16,7 @@ function App() {
 		}
 
 		setTotalIncome(temp);
+		localStorage.setItem("income", JSON.stringify(income));
 	}, [income]);
 	
 
